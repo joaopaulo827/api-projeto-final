@@ -1,0 +1,1 @@
+console.log("Total:",150+49.9)
