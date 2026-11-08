@@ -26,7 +26,21 @@ const livros = [
     autor: 'J.K. Rowling',
     genero: 'Fantasia',
     ano: 1997
-  }
+  },
+  {
+    id: 4,
+    titulo: 'A Sombra do Vento',
+    autor: 'Carlos Ruiz Zafón',
+    genero: 'Mistério',
+    ano: 2001
+  },
+  {
+    id: 5,
+    titulo: '1984',
+    autor: 'George Orwell',
+    genero: ' Ficção distópica',
+    ano: 1949
+  }  
 ];
 
 app.get('/health', (req, res) => {
