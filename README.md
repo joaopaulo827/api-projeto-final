@@ -1,17 +1,32 @@
-# API do projeto final
+# Organizador de livros
 
-> Troque este título pelo nome do seu sistema e escreva, em uma frase, o que ele resolve e para quem.
+> Uma frase: Um sistema que organizar livros pelo gênero e autor, para que gostar de ler e organizar livros.
 
-API REST desenvolvida no Curso Técnico em Desenvolvimento de Sistemas (SENAI), com Node.js e Express.
+API REST do projeto final do Curso Técnico em Desenvolvimento de Sistemas (SENAI).
 
-## Como abrir
+## Funcionalidades
+- [x] Listar e detalhar livros
+- [ ] Cadastrar, alterar e excluir
+- [ ] Banco de dados PostgreSQL
+- [ ] Login e permissões
+- [ ] Publicada na nuvem
 
-Neste repositório: **Code > Codespaces > Create codespace on main** (ou abra o codespace que já existe).
+## Tecnologias
+Node.js · Express · PostgreSQL · Prisma
 
 ## Como rodar
-
-```bash
 npm install
 cp .env.example .env
 npm run dev
-```
+
+## Rotas
+| Método | Rota | Descrição |
+|---|---|---|
+| GET | /health | status da API |
+
+## Roadmap
+- Minha personalização: …
+    Sou quiento, gosto de ambiente tranquilo
+    e gosto de computadores e programar
+## Autor
+João Paulo · LinkedIn · joaopaulo827
