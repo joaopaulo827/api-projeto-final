@@ -25,7 +25,7 @@ npm run dev
 | GET | /health | status da API |
 
 ## Roadmap
-- Minha personalização: …
+- Minha personalização:
     Sou quiento, gosto de ambiente tranquilo
     e gosto de computadores e programar
 ## Autor
