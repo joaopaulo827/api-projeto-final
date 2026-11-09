@@ -1,20 +1,18 @@
-{ 
-  "name": "api-projeto-final", 
-  "version": "1.0.0", 
-  "description": "Organizador de livros", 
-  "main": "index.js", "type": "module", 
-  "scripts": { 
-    "dev": "node --watch --env-file=.env src/server.js", 
-  "start": "node src/server.js" }, 
-  "repository": { 
-    "type": "git", 
-  "url": "git+https://github.com/joaopaulo827/api-projeto-final.git" }, 
-  "keywords": [], 
-  "author": "", 
-  "license": "ISC", 
-  "bugs": { 
-    "url": "https://github.com/joaopaulo827/api-projeto-final/issues" }, 
-  "homepage": "https://github.com/joaopaulo827/api-projeto-final#readme", 
-  "dependencies":
-   { "express": "^5.3.0" } 
-  }
+{"name":"api-projeto-final",
+"version":"1.0.0",
+"description":"Organizador de livros",
+"main":"index.js",
+"type":"module",
+"scripts":{
+  "dev":"node --watch --env-file=.env src/server.js",
+"start":"node src/server.js"},
+"repository":{
+  "type":"git",
+  "url":"git+https://github.com/joaopaulo827/api-projeto-final.git"},
+  "keywords":[],
+  "author":"",
+  "license":"ISC",
+  "bugs":{
+    "url":"https://github.com/joaopaulo827/api-projeto-final/issues"},
+    "homepage":"https://github.com/joaopaulo827/api-projeto-final#readme",
+    "dependencies":{"express":"^5.3.0"}}
