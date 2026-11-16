@@ -1,6 +1,6 @@
 import { generos } from '../data/generos.js';
 
-export function listar(req, res) {
+export function listarGenero(req, res) {
   res.json(generos);
 };
 
@@ -17,3 +17,17 @@ export function buscarPorId(req, res) {
 
   res.json(genero);
 };
+
+export function criar(req, res) {
+  const { id, nome } = req.body ?? {};
+  if (!nome) {
+    return res.status(400).json({ erro: 'O campo nome é obrigatório' });
+  }
+  const novoId = generos.length > 0 ? generos[generos.length - 1].id + 1 : 1;
+  const novo = {
+    id: novoId,
+    nome
+  };
+  generos.push(novo);
+  res.status(201).json(novo);
+}

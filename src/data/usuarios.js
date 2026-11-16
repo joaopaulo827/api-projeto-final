@@ -1,4 +1,4 @@
-const usuarios = [
+export const usuarios = [
   {id: 1, nome: 'Marcos', email:'marcos_damata@gmail.com.br', senhaHash: '10977081',criadoEm: '2026-01-11 16:20'},
   {id: 2, nome: 'Vera', email:'vera_darocha@gmail.com.br', senhaHash: '44932004', criadoEm: '2026-02-20 15:40'},
   {id: 3, nome: 'Tiago', email:'tiago_silva@gmail.com.br', senhaHash: '27422695', criadoEm: '2026-03-11 16:00'},

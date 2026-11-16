@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { listar, buscarPorId } from '../controllers/generosController.js';
+import { listarGenero, buscarPorId, criar } from '../controllers/generosController.js';
 
 const router = Router();
 
-router.get('/', listar);
+router.get('/', listarGenero);
 router.get('/:id', buscarPorId);
-
+router.post('/', criar);
 export default router;

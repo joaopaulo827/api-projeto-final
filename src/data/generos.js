@@ -1,4 +1,4 @@
-const generos = [
+export const generos = [
   {id: 1, nome: 'Romance' },
   {id: 2, nome: 'Literatura infantil'},
   {id: 3, nome: 'Fantasia'},
