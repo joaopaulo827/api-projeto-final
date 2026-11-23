@@ -1,6 +1,4 @@
 import express from 'express';
-import usuariosRoutes from './routes/usuariosRoutes.js';
-import generosRoutes from './routes/generosRoutes.js';
 import livrosRoutes from './routes/livrosRoutes.js';
 
 const app = express();
@@ -34,9 +32,6 @@ app.get('/', (req, res) => {
     ]
   });
 });
-
-app.use('/api/usuarios', usuariosRoutes);
-app.use('/api/generos', generosRoutes);
 app.use('/api/livros', livrosRoutes);
 
 app.use((req, res)=>{

@@ -28,10 +28,11 @@ model Livro {
   id       Int      @id @default(autoincrement())
   titulo   String
   isbn     String?  @unique
+  ano      Int?
   status   String   @default("disponivel")
   generoId Int
-  genero   Genero   @relation(fields: [generoId], references: [id]
-  ano      Int?)
+  genero   Genero   @relation(fields: [generoId], references: [id])
+  criadoEm DateTime @default(now())
 
   @@map("livros")
 }

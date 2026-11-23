@@ -1,1 +1,25 @@
-{"name":"api-projeto-final","version":"1.0.0","description":"Organizador de livros","main":"index.js","type":"module","scripts":{"dev":"node --watch --env-file=.env src/server.js","start":"node src/server.js"},"repository":{"type":"git","url":"git+https://github.com/joaopaulo827/api-projeto-final.git"},"keywords":[],"author":"","license":"ISC","bugs":{"url":"https://github.com/joaopaulo827/api-projeto-final/issues"},"homepage":"https://github.com/joaopaulo827/api-projeto-final#readme","dependencies":{"@prisma/adapter-pg":"^7.10.1","@prisma/client":"^7.10.1","dotenv":"^18.0.10","express":"^5.3.0","pg":"^8.23.1"},"devDependencies":{"prisma":"^7.10.1"}}
+{"name":"api-projeto-final",
+"version":"1.0.0",
+"description":"Organizador de livros",
+"main":"index.js",
+"type":"module",
+"scripts":{
+    "dev":"node --watch --env-file=.env src/server.js",
+    "start":"node src/server.js",
+    "seed": "node --env-file=.env prisma/seed.js"
+    },
+    "repository":{"type":"git",
+    "url":"git+https://github.com/joaopaulo827/api-projeto-final.git"},
+    "keywords":[],
+    "author":"",
+    "license":"ISC",
+    "bugs":{
+    "url":"https://github.com/joaopaulo827/api-projeto-final/issues"},
+    "homepage":"https://github.com/joaopaulo827/api-projeto-final#readme",
+    "dependencies":{"@prisma/adapter-pg":"^7.10.1",
+    "@prisma/client":"^7.10.1",
+    "dotenv":"^18.0.10",
+    "express":"^5.3.0",
+    "pg":"^8.23.1"},
+    "devDependencies":{
+    "prisma":"^7.10.1"}}
