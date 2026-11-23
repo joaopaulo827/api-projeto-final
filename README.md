@@ -6,7 +6,7 @@ API REST do projeto final do Curso Técnico em Desenvolvimento de Sistemas (SENA
 
 ## Funcionalidades
 - [x] Listar e detalhar livros
-- [ ] Cadastrar, alterar e excluir
+- [x] Cadastrar, alterar e excluir
 - [ ] Banco de dados PostgreSQL
 - [ ] Login e permissões
 - [ ] Publicada na nuvem
@@ -26,7 +26,5 @@ npm run dev
 
 ## Roadmap
 - Minha personalização:
-    Sou quiento, gosto de ambiente tranquilo
-    e gosto de computadores e programar
 ## Autor
 João Paulo · LinkedIn · joaopaulo827
