@@ -1,62 +1,63 @@
+
 import { prisma } from '../lib/prisma.js';
+import { ErroApi } from '../erros.js';
+import { validarLivro, lerId } from '../validacao/livroValidacao.js';
+
+const incluir = { genero: true };
+
+async function buscarOuFalhar(id) {
+  const livro = await prisma.livro.findUnique({ where: { id }, include: incluir });
+  if (!livro) {
+    throw new ErroApi(404, 'Livro não encontrado');
+  }
+  return livro;
+}
+
+async function conferirGenero(generoId) {
+  if (generoId === undefined) return;
+  const genero = await prisma.genero.findUnique({ where: { id: generoId } });
+  if (!genero) {
+    throw new ErroApi(400, 'Dados inválidos', ['generoId não existe']);
+  }
+}
+
 
 export async function listarLivros(req, res) {
-  const livros = await prisma.livro.findMany({ orderBy: { id: 'asc' } });
+  const livros = await prisma.livro.findMany({ include: incluir, orderBy: { id: 'asc' } });
   res.json(livros);
 }
 
+// GET /api/livros/:id
 export async function buscarPorId(req, res) {
-  const id = Number(req.params.id);
-  if (!Number.isInteger(id)) {
-    return res.status(400).json({ erro: 'O id precisa ser um número' });
-  }
-  const livro = await prisma.livro.findUnique({ where: { id } });
-  if (!livro) {
-    return res.status(404).json({ erro: 'Livro não encontrado' });
-  }
+  const livro = await buscarOuFalhar(lerId(req.params.id));
   res.json(livro);
 }
 
+// POST /api/livros
 export async function criar(req, res) {
-
-  const { titulo, isbn, ano, status, generoId } = req.body ?? {};
-  if (!titulo) {
-    return res.status(400).json({ erro: 'O campo titulo é obrigatório' });
-  }
-  if (!generoId) {
-    return res.status(400).json({ erro: 'O campo generoId é obrigatório' });
-  }
-  const genero = await prisma.genero.findUnique({ where: { id: Number(generoId) } });
-  if (!genero) {
-    return res.status(400).json({ erro: 'generoId não existe' });
-  }
-
+  const dados = req.body ?? {};
+  validarLivro(dados);
+  await conferirGenero(dados.generoId);
   const novo = await prisma.livro.create({
     data: {
-      titulo,
-      isbn,
-      ano,
-      status,
-      generoId: genero.id,
+      titulo: dados.titulo,
+      isbn: dados.isbn,
+      ano: dados.ano,
+      status: dados.status,
+      generoId: dados.generoId,
     },
+    include: incluir,
   });
   res.status(201).json(novo);
 }
 
+// PUT /api/livros/:id
 export async function atualizar(req, res) {
-  const id = Number(req.params.id);
-  if (!Number.isInteger(id)) {
-    return res.status(400).json({ erro: 'O id precisa ser um número' });
-  }
-  const existe = await prisma.livro.findUnique({ where: { id } });
-  if (!existe) {
-    return res.status(404).json({ erro: 'Livro não encontrado' });
-  }
+  const id = lerId(req.params.id);
+  await buscarOuFalhar(id);
   const dados = req.body ?? {};
-  if (dados.titulo === '') {
-    return res.status(400).json({ erro: 'O campo titulo não pode ficar vazio' });
-  }
-
+  validarLivro(dados, true);
+  await conferirGenero(dados.generoId);
   const atualizado = await prisma.livro.update({
     where: { id },
     data: {
@@ -64,20 +65,29 @@ export async function atualizar(req, res) {
       isbn: dados.isbn,
       ano: dados.ano,
       status: dados.status,
+      generoId: dados.generoId,
     },
+    include: incluir,
   });
   res.json(atualizado);
 }
 
 export async function excluir(req, res) {
-  const id = Number(req.params.id);
-  if (!Number.isInteger(id)) {
-    return res.status(400).json({ erro: 'O id precisa ser um número' });
-  }
-  const existe = await prisma.livro.findUnique({ where: { id } });
-  if (!existe) {
-    return res.status(404).json({ erro: 'Livro não encontrado' });
-  }
+  const id = lerId(req.params.id);
+  await buscarOuFalhar(id);
   await prisma.livro.delete({ where: { id } });
   res.status(204).send();
+}
+
+const STATUS_VALIDOS = ['disponivel', 'emprestado', 'indisponivel'];
+
+export async function alterarStatus(req, res) {
+  const id = lerId(req.params.id);
+  await buscarOuFalhar(id);
+  const { status } = req.body ?? {};
+  if (!STATUS_VALIDOS.includes(status)) {
+    throw new ErroApi(400, 'Dados inválidos', [`status precisa ser: ${STATUS_VALIDOS.join(', ')}`]);
+  }
+  const atualizado = await prisma.livro.update({ where: { id }, data: { status }, include: incluir });
+  res.json(atualizado);
 }
